@@ -1,0 +1,22 @@
+{
+    "team_number": "T0053",
+    "group_lead": {
+        "name": "Moksh Bansal",
+        "enrollment_no": "2501010279",
+        "github": "https://github.com/firewallls"
+    },
+    "members": [
+        {
+            "name": "Mrinal Upreti",
+            "enrollment_no": "2501010282",
+            "github": "https://github.com/mrinal-create"
+        },
+        {
+            "name": "Abhishek Pradhan",
+            "enrollment_no": "2501010018",
+            "github": "https://github.com/abhishek01012008"
+        }
+    ],
+    "postgres_version": "15 or newer",
+    "laptop_used_for_benchmarks": "Apple MacBook Pro"
+}

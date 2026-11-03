@@ -21,7 +21,7 @@ form, usually named `DE_Project_2026`). The tracker reads that repo, so do not c
 git clone https://github.com/edusatyaki/DBMS-Blinkit-Grocery-Delivery.git
 cd DBMS-Blinkit-Grocery-Delivery
 git remote rename origin project
-git remote add origin <your team's DE repo URL from the form>
+git remote add origin https://github.com/mrinal-create/DE_Project_2026.git
 git push -u origin main
 ```
 
