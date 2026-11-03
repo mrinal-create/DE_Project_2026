@@ -22,7 +22,7 @@
 
 - Team Number: T0053
 - Section: A
-- DE Repository: https://github.com/divyansh-x-codes/DE_Project_2026
+- DE Repository: https://github.com/mrinal-create/DE_Project_2026.git
 
 | Role | Name | Enrollment No. | GitHub Username |
 |---|---|---|---|
