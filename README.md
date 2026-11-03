@@ -29,7 +29,7 @@
 | Group Lead | Moksh Bansal | 2501010279 | firewallls |
 | Member 2 | Mrinal Upreti | 2501010282 | mrinal-create |
 | Member 3 | Abhishek Pradhan | 2501010018 | abhishek01012008 |
-| Member 4 | Subham Sekhar Mandal | 2501010461 |  |
+| Member 4 | Subham Sekhar Mandal | 2501010461 | subham-sekhar-mandal |
 
 **Team No.:** T0053 · **Section:** A · **Repository URL:** https://github.com/mrinal-create/DE_Project_2026.git
 

@@ -15,7 +15,13 @@
             "name": "Abhishek Pradhan",
             "enrollment_no": "2501010018",
             "github": "https://github.com/abhishek01012008"
+        },
+        {
+            "name": "Subham Sekhar Mandal",
+            "enrollment_no": "2501010461",
+            "github": "https://github.com/subham-sekhar-mandal"
         }
+        
     ],
     "postgres_version": "15 or newer",
     "laptop_used_for_benchmarks": "Apple MacBook Pro"
