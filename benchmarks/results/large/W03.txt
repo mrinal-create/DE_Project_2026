@@ -1,0 +1,99 @@
+=== W03 run 1 ===
+Update on orders o  (cost=0.75..9.40 rows=0 width=0) (actual time=1.193..1.193 rows=0.00 loops=1)
+  Buffers: shared hit=61 read=13 dirtied=9
+  InitPlan 4
+    ->  Result  (cost=0.31..0.32 rows=1 width=8) (actual time=0.313..0.313 rows=1.00 loops=1)
+          Buffers: shared hit=1 read=2
+          InitPlan 3
+            ->  Limit  (cost=0.28..0.31 rows=1 width=8) (actual time=0.312..0.312 rows=1.00 loops=1)
+                  Buffers: shared hit=1 read=2
+                  ->  Index Only Scan using idx_orders_packing_id on orders  (cost=0.28..26.77 rows=700 width=8) (actual time=0.312..0.312 rows=1.00 loops=1)
+                        Heap Fetches: 0
+                        Index Searches: 1
+                        Buffers: shared hit=1 read=2
+  ->  Index Scan using orders_pkey on orders o  (cost=0.43..9.08 rows=1 width=84) (actual time=0.468..0.468 rows=1.00 loops=1)
+        Index Cond: (order_id = (InitPlan 4).col1)
+        Index Searches: 1
+        Buffers: shared hit=6 read=4
+        SubPlan 2
+          ->  Result  (cost=0.61..0.62 rows=1 width=4) (actual time=0.138..0.138 rows=1.00 loops=1)
+                Buffers: shared hit=2 read=1
+                InitPlan 1
+                  ->  Limit  (cost=0.29..0.61 rows=1 width=4) (actual time=0.137..0.137 rows=1.00 loops=1)
+                        Buffers: shared hit=2 read=1
+                        ->  Index Only Scan using idx_riders_store_active on riders r  (cost=0.29..4.51 rows=13 width=4) (actual time=0.137..0.137 rows=1.00 loops=1)
+                              Index Cond: (store_id = o.store_id)
+                              Heap Fetches: 0
+                              Index Searches: 1
+                              Buffers: shared hit=2 read=1
+Planning:
+  Buffers: shared hit=416 read=2
+Planning Time: 0.659 ms
+Trigger for constraint orders_rider_id_fkey: time=0.192 calls=1
+Execution Time: 1.435 ms
+=== W03 run 2 ===
+Update on orders o  (cost=0.75..9.40 rows=0 width=0) (actual time=0.226..0.226 rows=0.00 loops=1)
+  Buffers: shared hit=76
+  InitPlan 4
+    ->  Result  (cost=0.31..0.32 rows=1 width=8) (actual time=0.028..0.028 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 3
+            ->  Limit  (cost=0.28..0.31 rows=1 width=8) (actual time=0.027..0.027 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan using idx_orders_packing_id on orders  (cost=0.28..26.77 rows=700 width=8) (actual time=0.027..0.027 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Index Scan using orders_pkey on orders o  (cost=0.43..9.08 rows=1 width=84) (actual time=0.063..0.064 rows=1.00 loops=1)
+        Index Cond: (order_id = (InitPlan 4).col1)
+        Index Searches: 1
+        Buffers: shared hit=13
+        SubPlan 2
+          ->  Result  (cost=0.61..0.62 rows=1 width=4) (actual time=0.024..0.024 rows=1.00 loops=1)
+                Buffers: shared hit=3
+                InitPlan 1
+                  ->  Limit  (cost=0.29..0.61 rows=1 width=4) (actual time=0.024..0.024 rows=1.00 loops=1)
+                        Buffers: shared hit=3
+                        ->  Index Only Scan using idx_riders_store_active on riders r  (cost=0.29..4.51 rows=13 width=4) (actual time=0.024..0.024 rows=1.00 loops=1)
+                              Index Cond: (store_id = o.store_id)
+                              Heap Fetches: 0
+                              Index Searches: 1
+                              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=418
+Planning Time: 0.604 ms
+Trigger for constraint orders_rider_id_fkey: time=0.049 calls=1
+Execution Time: 0.323 ms
+=== W03 run 3 ===
+Update on orders o  (cost=0.75..9.40 rows=0 width=0) (actual time=0.224..0.224 rows=0.00 loops=1)
+  Buffers: shared hit=76
+  InitPlan 4
+    ->  Result  (cost=0.31..0.32 rows=1 width=8) (actual time=0.028..0.028 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 3
+            ->  Limit  (cost=0.28..0.31 rows=1 width=8) (actual time=0.027..0.028 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan using idx_orders_packing_id on orders  (cost=0.28..26.77 rows=700 width=8) (actual time=0.027..0.027 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Index Scan using orders_pkey on orders o  (cost=0.43..9.08 rows=1 width=84) (actual time=0.063..0.064 rows=1.00 loops=1)
+        Index Cond: (order_id = (InitPlan 4).col1)
+        Index Searches: 1
+        Buffers: shared hit=13
+        SubPlan 2
+          ->  Result  (cost=0.61..0.62 rows=1 width=4) (actual time=0.024..0.025 rows=1.00 loops=1)
+                Buffers: shared hit=3
+                InitPlan 1
+                  ->  Limit  (cost=0.29..0.61 rows=1 width=4) (actual time=0.024..0.024 rows=1.00 loops=1)
+                        Buffers: shared hit=3
+                        ->  Index Only Scan using idx_riders_store_active on riders r  (cost=0.29..4.51 rows=13 width=4) (actual time=0.024..0.024 rows=1.00 loops=1)
+                              Index Cond: (store_id = o.store_id)
+                              Heap Fetches: 0
+                              Index Searches: 1
+                              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=418
+Planning Time: 0.619 ms
+Trigger for constraint orders_rider_id_fkey: time=0.052 calls=1
+Execution Time: 0.327 ms

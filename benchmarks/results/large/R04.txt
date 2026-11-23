@@ -1,0 +1,72 @@
+=== R04 run 1 ===
+Sort  (cost=62.65..62.70 rows=20 width=20) (actual time=0.817..0.818 rows=15.00 loops=1)
+  Sort Key: si.quantity_on_hand DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5 read=26
+  ->  Hash Join  (cost=8.21..62.22 rows=20 width=20) (actual time=0.653..0.807 rows=15.00 loops=1)
+        Hash Cond: (s.store_id = si.store_id)
+        Buffers: shared hit=2 read=26
+        ->  Seq Scan on dark_stores s  (cost=0.00..53.00 rows=384 width=15) (actual time=0.130..0.270 rows=384.00 loops=1)
+              Filter: (city_id = 1)
+              Rows Removed by Filter: 2016
+              Buffers: shared read=23
+        ->  Hash  (cost=6.63..6.63 rows=126 width=13) (actual time=0.518..0.518 rows=198.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 18kB
+              Buffers: shared hit=2 read=3
+              ->  Index Only Scan using idx_store_inv_product_store on store_inventory si  (cost=0.43..6.63 rows=126 width=13) (actual time=0.407..0.505 rows=198.00 loops=1)
+                    Index Cond: (product_id = 1236)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=3
+Planning:
+  Buffers: shared hit=265 read=8
+Planning Time: 1.649 ms
+Execution Time: 0.848 ms
+=== R04 run 2 ===
+Sort  (cost=62.65..62.70 rows=20 width=20) (actual time=0.151..0.151 rows=15.00 loops=1)
+  Sort Key: si.quantity_on_hand DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=31
+  ->  Hash Join  (cost=8.21..62.22 rows=20 width=20) (actual time=0.041..0.141 rows=15.00 loops=1)
+        Hash Cond: (s.store_id = si.store_id)
+        Buffers: shared hit=28
+        ->  Seq Scan on dark_stores s  (cost=0.00..53.00 rows=384 width=15) (actual time=0.003..0.088 rows=384.00 loops=1)
+              Filter: (city_id = 1)
+              Rows Removed by Filter: 2016
+              Buffers: shared hit=23
+        ->  Hash  (cost=6.63..6.63 rows=126 width=13) (actual time=0.034..0.034 rows=198.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 18kB
+              Buffers: shared hit=5
+              ->  Index Only Scan using idx_store_inv_product_store on store_inventory si  (cost=0.43..6.63 rows=126 width=13) (actual time=0.006..0.019 rows=198.00 loops=1)
+                    Index Cond: (product_id = 1236)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.482 ms
+Execution Time: 0.181 ms
+=== R04 run 3 ===
+Sort  (cost=62.65..62.70 rows=20 width=20) (actual time=0.147..0.148 rows=15.00 loops=1)
+  Sort Key: si.quantity_on_hand DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=31
+  ->  Hash Join  (cost=8.21..62.22 rows=20 width=20) (actual time=0.039..0.138 rows=15.00 loops=1)
+        Hash Cond: (s.store_id = si.store_id)
+        Buffers: shared hit=28
+        ->  Seq Scan on dark_stores s  (cost=0.00..53.00 rows=384 width=15) (actual time=0.003..0.087 rows=384.00 loops=1)
+              Filter: (city_id = 1)
+              Rows Removed by Filter: 2016
+              Buffers: shared hit=23
+        ->  Hash  (cost=6.63..6.63 rows=126 width=13) (actual time=0.032..0.032 rows=198.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 18kB
+              Buffers: shared hit=5
+              ->  Index Only Scan using idx_store_inv_product_store on store_inventory si  (cost=0.43..6.63 rows=126 width=13) (actual time=0.006..0.018 rows=198.00 loops=1)
+                    Index Cond: (product_id = 1236)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.492 ms
+Execution Time: 0.177 ms

@@ -1,0 +1,78 @@
+=== R17 run 1 ===
+Sort  (cost=901.24..901.69 rows=180 width=42) (actual time=4.214..4.216 rows=60.00 loops=1)
+  Sort Key: s.city_id, m.month
+  Sort Method: quicksort  Memory: 27kB
+  Buffers: shared hit=29 read=102
+  ->  HashAggregate  (cost=892.24..894.49 rows=180 width=42) (actual time=4.196..4.202 rows=60.00 loops=1)
+        Group Key: s.city_id, m.month
+        Batches: 1  Memory Usage: 64kB
+        Buffers: shared hit=23 read=102
+        ->  Hash Join  (cost=77.42..788.98 rows=13768 width=13) (actual time=0.721..3.185 rows=13812.00 loops=1)
+              Hash Cond: (m.store_id = s.store_id)
+              Buffers: shared hit=23 read=102
+              ->  Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics m  (cost=0.41..675.77 rows=13768 width=15) (actual time=0.507..2.019 rows=13812.00 loops=1)
+                    Index Cond: ((month >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (month < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared read=102
+              ->  Hash  (cost=47.00..47.00 rows=2400 width=6) (actual time=0.207..0.207 rows=2400.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 126kB
+                    Buffers: shared hit=23
+                    ->  Seq Scan on dark_stores s  (cost=0.00..47.00 rows=2400 width=6) (actual time=0.005..0.115 rows=2400.00 loops=1)
+                          Buffers: shared hit=23
+Planning:
+  Buffers: shared hit=293 read=3
+Planning Time: 0.629 ms
+Execution Time: 4.256 ms
+=== R17 run 2 ===
+Sort  (cost=901.24..901.69 rows=180 width=42) (actual time=2.526..2.527 rows=60.00 loops=1)
+  Sort Key: s.city_id, m.month
+  Sort Method: quicksort  Memory: 27kB
+  Buffers: shared hit=131
+  ->  HashAggregate  (cost=892.24..894.49 rows=180 width=42) (actual time=2.508..2.514 rows=60.00 loops=1)
+        Group Key: s.city_id, m.month
+        Batches: 1  Memory Usage: 64kB
+        Buffers: shared hit=125
+        ->  Hash Join  (cost=77.42..788.98 rows=13768 width=13) (actual time=0.207..1.609 rows=13812.00 loops=1)
+              Hash Cond: (m.store_id = s.store_id)
+              Buffers: shared hit=125
+              ->  Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics m  (cost=0.41..675.77 rows=13768 width=15) (actual time=0.023..0.566 rows=13812.00 loops=1)
+                    Index Cond: ((month >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (month < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=102
+              ->  Hash  (cost=47.00..47.00 rows=2400 width=6) (actual time=0.178..0.179 rows=2400.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 126kB
+                    Buffers: shared hit=23
+                    ->  Seq Scan on dark_stores s  (cost=0.00..47.00 rows=2400 width=6) (actual time=0.004..0.100 rows=2400.00 loops=1)
+                          Buffers: shared hit=23
+Planning:
+  Buffers: shared hit=296
+Planning Time: 0.360 ms
+Execution Time: 2.567 ms
+=== R17 run 3 ===
+Sort  (cost=901.24..901.69 rows=180 width=42) (actual time=2.625..2.626 rows=60.00 loops=1)
+  Sort Key: s.city_id, m.month
+  Sort Method: quicksort  Memory: 27kB
+  Buffers: shared hit=131
+  ->  HashAggregate  (cost=892.24..894.49 rows=180 width=42) (actual time=2.608..2.614 rows=60.00 loops=1)
+        Group Key: s.city_id, m.month
+        Batches: 1  Memory Usage: 64kB
+        Buffers: shared hit=125
+        ->  Hash Join  (cost=77.42..788.98 rows=13768 width=13) (actual time=0.206..1.628 rows=13812.00 loops=1)
+              Hash Cond: (m.store_id = s.store_id)
+              Buffers: shared hit=125
+              ->  Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics m  (cost=0.41..675.77 rows=13768 width=15) (actual time=0.023..0.578 rows=13812.00 loops=1)
+                    Index Cond: ((month >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (month < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=102
+              ->  Hash  (cost=47.00..47.00 rows=2400 width=6) (actual time=0.178..0.178 rows=2400.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 126kB
+                    Buffers: shared hit=23
+                    ->  Seq Scan on dark_stores s  (cost=0.00..47.00 rows=2400 width=6) (actual time=0.004..0.095 rows=2400.00 loops=1)
+                          Buffers: shared hit=23
+Planning:
+  Buffers: shared hit=296
+Planning Time: 0.361 ms
+Execution Time: 2.663 ms

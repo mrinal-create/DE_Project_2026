@@ -1,31 +1,31 @@
-query_id,type,avg_ms,median_ms,min_ms,max_ms
-R01,READ,0.218,0.215,0.182,0.258
-R02,READ,0.372,0.368,0.345,0.402
-R03,READ,0.564,0.558,0.521,0.612
-R04,READ,0.174,0.171,0.155,0.196
-R05,READ,0.128,0.125,0.112,0.148
-R06,READ,0.124,0.121,0.108,0.144
-R07,READ,0.098,0.096,0.088,0.111
-R08,READ,0.268,0.262,0.235,0.308
-R09,READ,0.492,0.485,0.450,0.540
-R10,READ,8.450,8.350,7.820,9.180
-R11,READ,1.920,1.890,1.780,2.090
-R12,READ,21.450,21.200,19.800,23.350
-R13,READ,38.600,38.200,36.100,41.500
-R14,READ,0.245,0.240,0.218,0.278
-R15,READ,2.180,2.140,1.980,2.420
-R16,READ,0.162,0.158,0.138,0.190
-R17,READ,0.685,0.672,0.620,0.764
-R18,READ,9.850,9.720,9.100,10.730
-R19,READ,0.582,0.570,0.510,0.665
-R20,READ,0.128,0.124,0.115,0.146
-R21,READ,0.165,0.162,0.140,0.193
-R22,READ,0.138,0.134,0.120,0.160
-R23,READ,0.054,0.052,0.048,0.061
-R24,READ,1.840,1.810,1.650,2.060
-R25,READ,0.142,0.138,0.125,0.164
-W01,WRITE,2.180,2.120,1.950,2.470
-W02,WRITE,0.684,0.665,0.610,0.778
-W03,WRITE,0.892,0.875,0.810,0.990
-W04,WRITE,3.650,3.580,3.210,4.160
-W05,WRITE,178.500,175.400,162.000,198.100
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,0.220,0.136,0.126,0.397,Index Only Scan using idx_dark_stores_active_coords on dark_stores
+R02,READ,0.857,0.560,0.433,1.577,Seq Scan on categories | Index Only Scan using idx_products_category_cover on products | Index Only Scan using idx_store_inv_instock_store_price on store_inventory
+R03,READ,2.021,0.782,0.734,4.546,Index Only Scan using idx_store_inv_instock_store_price on store_inventory | Bitmap Heap Scan on products | Bitmap Index Scan on idx_products_name_trgm
+R04,READ,0.402,0.181,0.177,0.848,Seq Scan on dark_stores | Index Only Scan using idx_store_inv_product_store on store_inventory
+R05,READ,0.231,0.052,0.048,0.592,Index Only Scan using idx_store_inv_product_store on store_inventory
+R06,READ,0.178,0.040,0.038,0.457,Index Only Scan using idx_orders_customer_placed on orders
+R07,READ,0.137,0.032,0.032,0.346,Index Only Scan using idx_orders_open_store_placed on orders
+R08,READ,1.035,0.724,0.716,1.664,Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics
+R09,READ,1.900,1.704,1.651,2.345,Seq Scan on products | Index Only Scan using idx_store_inv_low_stock on store_inventory
+R10,READ,5.282,4.973,4.916,5.956,Index Only Scan using idx_mov_wastage_moved on inventory_movements | Seq Scan on products | Seq Scan on categories
+R11,READ,0.160,0.060,0.058,0.363,Index Only Scan using idx_orders_store_placed on orders
+R12,READ,39.912,1.482,1.467,116.788,Index Only Scan using idx_order_items_product_order on order_items | Index Only Scan using order_items_pkey on order_items
+R13,READ,600.002,474.386,432.276,893.345,Index Scan using products_pkey on products | Index Only Scan using idx_order_items_substitute on order_items | Index Scan using orders_pkey on orders
+R14,READ,0.896,0.655,0.618,1.415,Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate
+R15,READ,1.155,0.846,0.819,1.800,Index Only Scan using idx_orders_placed_desc on orders | Seq Scan on dark_stores
+R16,READ,0.066,0.061,0.056,0.081,Seq Scan on mv_cohort_last_activity
+R17,READ,3.162,2.663,2.567,4.256,Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics | Seq Scan on dark_stores
+R18,READ,5.386,2.292,2.237,11.630,Seq Scan on products | Index Only Scan using idx_store_inv_instock_store_price on store_inventory | Index Only Scan using idx_orders_store_placed on orders | Index Only Scan using order_items_pkey on order_items
+R19,READ,2.652,2.242,2.213,3.501,Index Only Scan using idx_mv_monthly_product_sales_pk on mv_monthly_product_sales | Seq Scan on categories | Index Only Scan using idx_products_category_cover on products
+R20,READ,0.050,0.050,0.048,0.053,Index Only Scan using idx_mv_daily_delivered_gmv_pk on mv_daily_delivered_gmv
+R21,READ,0.705,0.051,0.049,2.015,Index Only Scan using idx_riders_store_active on riders | Index Only Scan using idx_orders_rider_placed on orders
+R22,READ,0.115,0.043,0.041,0.260,Index Only Scan using idx_orders_placed_desc on orders
+R23,READ,0.124,0.028,0.024,0.320,Index Scan using uq_products_sku on products
+R24,READ,0.227,0.060,0.055,0.566,Index Only Scan using idx_mov_store_type_moved on inventory_movements
+R25,READ,0.132,0.046,0.040,0.310,Index Only Scan using idx_mv_cust_yearly_deliv_top on mv_customer_yearly_delivered
+W01,WRITE,1.376,0.772,0.769,2.587,(no scan)
+W02,WRITE,1.836,0.208,0.192,5.107,Index Only Scan using idx_orders_open_pack_store_id on orders | Index Scan using order_items_pkey on order_items | Index Scan using idx_store_inv_product_store on store_inventory
+W03,WRITE,0.695,0.327,0.323,1.435,Index Only Scan using idx_orders_packing_id on orders | Index Scan using orders_pkey on orders | Index Only Scan using idx_riders_store_active on riders
+W04,WRITE,8.553,1.390,1.373,22.896,Index Scan using idx_store_inv_low_stock on store_inventory
+W05,WRITE,874.352,652.973,612.769,1357.313,Bitmap Heap Scan on inventory_movements | Bitmap Index Scan on idx_mov_moved_at_brin

@@ -1,0 +1,30 @@
+=== R07 run 1 ===
+Index Only Scan using idx_orders_open_store_placed on orders  (cost=0.28..4.29 rows=1 width=29) (actual time=0.338..0.338 rows=1.00 loops=1)
+  Index Cond: (store_id = 43)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=1 read=2
+Planning:
+  Buffers: shared hit=330
+Planning Time: 0.434 ms
+Execution Time: 0.346 ms
+=== R07 run 2 ===
+Index Only Scan using idx_orders_open_store_placed on orders  (cost=0.28..4.29 rows=1 width=29) (actual time=0.024..0.024 rows=1.00 loops=1)
+  Index Cond: (store_id = 43)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=330
+Planning Time: 0.415 ms
+Execution Time: 0.032 ms
+=== R07 run 3 ===
+Index Only Scan using idx_orders_open_store_placed on orders  (cost=0.28..4.29 rows=1 width=29) (actual time=0.024..0.024 rows=1.00 loops=1)
+  Index Cond: (store_id = 43)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=330
+Planning Time: 0.420 ms
+Execution Time: 0.032 ms

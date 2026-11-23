@@ -1,0 +1,66 @@
+=== R09 run 1 ===
+Sort  (cost=799.68..800.94 rows=501 width=36) (actual time=2.313..2.317 rows=229.00 loops=1)
+  Sort Key: si.quantity_on_hand
+  Sort Method: quicksort  Memory: 37kB
+  Buffers: shared hit=379 read=4
+  ->  Hash Join  (cost=23.45..777.22 rows=501 width=36) (actual time=0.698..2.290 rows=229.00 loops=1)
+        Hash Cond: (p.product_id = si.product_id)
+        Buffers: shared hit=376 read=4
+        ->  Seq Scan on products p  (cost=0.00..675.00 rows=30000 width=28) (actual time=0.002..0.768 rows=30000.00 loops=1)
+              Buffers: shared hit=375
+        ->  Hash  (cost=17.19..17.19 rows=501 width=12) (actual time=0.692..0.692 rows=229.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 18kB
+              Buffers: shared hit=1 read=4
+              ->  Index Only Scan using idx_store_inv_low_stock on store_inventory si  (cost=0.42..17.19 rows=501 width=12) (actual time=0.542..0.679 rows=229.00 loops=1)
+                    Index Cond: (store_id = 43)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=4
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.480 ms
+Execution Time: 2.345 ms
+=== R09 run 2 ===
+Sort  (cost=799.68..800.94 rows=501 width=36) (actual time=1.616..1.620 rows=229.00 loops=1)
+  Sort Key: si.quantity_on_hand
+  Sort Method: quicksort  Memory: 37kB
+  Buffers: shared hit=383
+  ->  Hash Join  (cost=23.45..777.22 rows=501 width=36) (actual time=0.037..1.595 rows=229.00 loops=1)
+        Hash Cond: (p.product_id = si.product_id)
+        Buffers: shared hit=380
+        ->  Seq Scan on products p  (cost=0.00..675.00 rows=30000 width=28) (actual time=0.002..0.767 rows=30000.00 loops=1)
+              Buffers: shared hit=375
+        ->  Hash  (cost=17.19..17.19 rows=501 width=12) (actual time=0.030..0.030 rows=229.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 18kB
+              Buffers: shared hit=5
+              ->  Index Only Scan using idx_store_inv_low_stock on store_inventory si  (cost=0.42..17.19 rows=501 width=12) (actual time=0.008..0.018 rows=229.00 loops=1)
+                    Index Cond: (store_id = 43)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.449 ms
+Execution Time: 1.651 ms
+=== R09 run 3 ===
+Sort  (cost=799.68..800.94 rows=501 width=36) (actual time=1.671..1.676 rows=229.00 loops=1)
+  Sort Key: si.quantity_on_hand
+  Sort Method: quicksort  Memory: 37kB
+  Buffers: shared hit=383
+  ->  Hash Join  (cost=23.45..777.22 rows=501 width=36) (actual time=0.036..1.649 rows=229.00 loops=1)
+        Hash Cond: (p.product_id = si.product_id)
+        Buffers: shared hit=380
+        ->  Seq Scan on products p  (cost=0.00..675.00 rows=30000 width=28) (actual time=0.002..0.784 rows=30000.00 loops=1)
+              Buffers: shared hit=375
+        ->  Hash  (cost=17.19..17.19 rows=501 width=12) (actual time=0.030..0.030 rows=229.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 18kB
+              Buffers: shared hit=5
+              ->  Index Only Scan using idx_store_inv_low_stock on store_inventory si  (cost=0.42..17.19 rows=501 width=12) (actual time=0.008..0.018 rows=229.00 loops=1)
+                    Index Cond: (store_id = 43)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.448 ms
+Execution Time: 1.704 ms

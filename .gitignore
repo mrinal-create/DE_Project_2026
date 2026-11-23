@@ -2,3 +2,4 @@ seed_data/
 large_data/
 .DS_Store
 baseline.sh
+large_data.zip

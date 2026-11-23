@@ -1,0 +1,48 @@
+=== R01 run 1 ===
+Limit  (cost=5.88..5.88 rows=1 width=47) (actual time=0.365..0.365 rows=1.00 loops=1)
+  Buffers: shared hit=9 read=3
+  ->  Sort  (cost=5.88..5.89 rows=4 width=47) (actual time=0.364..0.364 rows=1.00 loops=1)
+        Sort Key: (round((('6371'::double precision * acos(LEAST('1'::double precision, ((('0.9746441670910125'::double precision * cos(radians((latitude)::double precision))) * cos((radians((longitude)::double precision) - '1.3547245653979987'::double precision))) + ('0.22376046915276712'::double precision * sin(radians((latitude)::double precision))))))))::numeric, 2))
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=9 read=3
+        ->  Index Only Scan using idx_dark_stores_active_coords on dark_stores  (cost=0.28..5.86 rows=4 width=47) (actual time=0.317..0.352 rows=34.00 loops=1)
+              Index Cond: ((latitude >= 12.903) AND (latitude <= 12.957) AND (longitude >= 77.592) AND (longitude <= 77.648))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=6 read=3
+Planning:
+  Buffers: shared hit=149
+Planning Time: 0.559 ms
+Execution Time: 0.397 ms
+=== R01 run 2 ===
+Limit  (cost=5.88..5.88 rows=1 width=47) (actual time=0.095..0.096 rows=1.00 loops=1)
+  Buffers: shared hit=12
+  ->  Sort  (cost=5.88..5.89 rows=4 width=47) (actual time=0.095..0.095 rows=1.00 loops=1)
+        Sort Key: (round((('6371'::double precision * acos(LEAST('1'::double precision, ((('0.9746441670910125'::double precision * cos(radians((latitude)::double precision))) * cos((radians((longitude)::double precision) - '1.3547245653979987'::double precision))) + ('0.22376046915276712'::double precision * sin(radians((latitude)::double precision))))))))::numeric, 2))
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=12
+        ->  Index Only Scan using idx_dark_stores_active_coords on dark_stores  (cost=0.28..5.86 rows=4 width=47) (actual time=0.051..0.083 rows=34.00 loops=1)
+              Index Cond: ((latitude >= 12.903) AND (latitude <= 12.957) AND (longitude >= 77.592) AND (longitude <= 77.648))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.305 ms
+Execution Time: 0.126 ms
+=== R01 run 3 ===
+Limit  (cost=5.88..5.88 rows=1 width=47) (actual time=0.098..0.098 rows=1.00 loops=1)
+  Buffers: shared hit=12
+  ->  Sort  (cost=5.88..5.89 rows=4 width=47) (actual time=0.098..0.098 rows=1.00 loops=1)
+        Sort Key: (round((('6371'::double precision * acos(LEAST('1'::double precision, ((('0.9746441670910125'::double precision * cos(radians((latitude)::double precision))) * cos((radians((longitude)::double precision) - '1.3547245653979987'::double precision))) + ('0.22376046915276712'::double precision * sin(radians((latitude)::double precision))))))))::numeric, 2))
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=12
+        ->  Index Only Scan using idx_dark_stores_active_coords on dark_stores  (cost=0.28..5.86 rows=4 width=47) (actual time=0.052..0.086 rows=34.00 loops=1)
+              Index Cond: ((latitude >= 12.903) AND (latitude <= 12.957) AND (longitude >= 77.592) AND (longitude <= 77.648))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=154
+Planning Time: 0.330 ms
+Execution Time: 0.136 ms

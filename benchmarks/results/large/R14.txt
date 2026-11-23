@@ -1,0 +1,42 @@
+=== R14 run 1 ===
+Sort  (cost=234.51..239.20 rows=1876 width=44) (actual time=1.327..1.363 rows=1875.00 loops=1)
+  Sort Key: (round(((100.0 * (short_lines)::numeric) / (lines)::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 122kB
+  Buffers: shared hit=3 read=14
+  ->  Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate  (cost=0.29..132.52 rows=1876 width=44) (actual time=0.377..1.077 rows=1875.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared read=14
+Planning:
+  Buffers: shared hit=73 read=25
+Planning Time: 0.495 ms
+Execution Time: 1.415 ms
+=== R14 run 2 ===
+Sort  (cost=234.51..239.20 rows=1876 width=44) (actual time=0.570..0.604 rows=1875.00 loops=1)
+  Sort Key: (round(((100.0 * (short_lines)::numeric) / (lines)::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 122kB
+  Buffers: shared hit=17
+  ->  Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate  (cost=0.29..132.52 rows=1876 width=44) (actual time=0.029..0.329 rows=1875.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=14
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.172 ms
+Execution Time: 0.655 ms
+=== R14 run 3 ===
+Sort  (cost=234.51..239.20 rows=1876 width=44) (actual time=0.536..0.569 rows=1875.00 loops=1)
+  Sort Key: (round(((100.0 * (short_lines)::numeric) / (lines)::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 122kB
+  Buffers: shared hit=17
+  ->  Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate  (cost=0.29..132.52 rows=1876 width=44) (actual time=0.028..0.303 rows=1875.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=14
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.166 ms
+Execution Time: 0.618 ms

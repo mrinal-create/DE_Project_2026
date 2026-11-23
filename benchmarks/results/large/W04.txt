@@ -1,0 +1,36 @@
+=== W04 run 1 ===
+Update on store_inventory  (cost=0.42..891.64 rows=0 width=0) (actual time=22.847..22.847 rows=0.00 loops=1)
+  Buffers: shared hit=3113 read=241 dirtied=252 written=8
+  ->  Index Scan using idx_store_inv_low_stock on store_inventory  (cost=0.42..891.64 rows=501 width=18) (actual time=0.131..0.378 rows=229.00 loops=1)
+        Index Cond: (store_id = 43)
+        Filter: (quantity_on_hand <= reorder_level)
+        Index Searches: 1
+        Buffers: shared hit=78 read=8
+Planning:
+  Buffers: shared hit=148
+Planning Time: 0.252 ms
+Execution Time: 22.896 ms
+=== W04 run 2 ===
+Update on store_inventory  (cost=0.42..891.64 rows=0 width=0) (actual time=1.321..1.321 rows=0.00 loops=1)
+  Buffers: shared hit=3551 read=1 dirtied=2 written=2
+  ->  Index Scan using idx_store_inv_low_stock on store_inventory  (cost=0.42..891.64 rows=501 width=18) (actual time=0.014..0.058 rows=229.00 loops=1)
+        Index Cond: (store_id = 43)
+        Filter: (quantity_on_hand <= reorder_level)
+        Index Searches: 1
+        Buffers: shared hit=84
+Planning:
+  Buffers: shared hit=148
+Planning Time: 0.280 ms
+Execution Time: 1.373 ms
+=== W04 run 3 ===
+Update on store_inventory  (cost=0.42..891.64 rows=0 width=0) (actual time=1.345..1.345 rows=0.00 loops=1)
+  Buffers: shared hit=3707 dirtied=3 written=3
+  ->  Index Scan using idx_store_inv_low_stock on store_inventory  (cost=0.42..891.64 rows=501 width=18) (actual time=0.015..0.061 rows=229.00 loops=1)
+        Index Cond: (store_id = 43)
+        Filter: (quantity_on_hand <= reorder_level)
+        Index Searches: 1
+        Buffers: shared hit=84
+Planning:
+  Buffers: shared hit=148
+Planning Time: 0.254 ms
+Execution Time: 1.390 ms

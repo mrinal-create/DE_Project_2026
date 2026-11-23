@@ -1,0 +1,45 @@
+=== R08 run 1 ===
+Sort  (cost=268.63..274.30 rows=2269 width=44) (actual time=1.567..1.607 rows=2302.00 loops=1)
+  Sort Key: (round(((100.0 * (late_deliveries)::numeric) / (delivered_orders)::numeric), 1)) DESC
+  Sort Method: quicksort  Memory: 186kB
+  Buffers: shared hit=4 read=19
+  ->  Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics  (cost=0.41..142.16 rows=2269 width=44) (actual time=0.503..1.280 rows=2302.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_orders > 0)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=1 read=19
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.177 ms
+Execution Time: 1.664 ms
+=== R08 run 2 ===
+Sort  (cost=268.63..274.30 rows=2269 width=44) (actual time=0.634..0.671 rows=2302.00 loops=1)
+  Sort Key: (round(((100.0 * (late_deliveries)::numeric) / (delivered_orders)::numeric), 1)) DESC
+  Sort Method: quicksort  Memory: 186kB
+  Buffers: shared hit=23
+  ->  Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics  (cost=0.41..142.16 rows=2269 width=44) (actual time=0.025..0.368 rows=2302.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_orders > 0)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=20
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.163 ms
+Execution Time: 0.724 ms
+=== R08 run 3 ===
+Sort  (cost=268.63..274.30 rows=2269 width=44) (actual time=0.625..0.663 rows=2302.00 loops=1)
+  Sort Key: (round(((100.0 * (late_deliveries)::numeric) / (delivered_orders)::numeric), 1)) DESC
+  Sort Method: quicksort  Memory: 186kB
+  Buffers: shared hit=23
+  ->  Index Only Scan using idx_mv_monthly_store_order_pk on mv_monthly_store_order_metrics  (cost=0.41..142.16 rows=2269 width=44) (actual time=0.024..0.365 rows=2302.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_orders > 0)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=20
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.158 ms
+Execution Time: 0.716 ms

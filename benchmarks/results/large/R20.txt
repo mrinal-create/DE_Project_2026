@@ -1,0 +1,42 @@
+=== R20 run 1 ===
+WindowAgg  (cost=0.45..5.29 rows=29 width=43) (actual time=0.017..0.027 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY day)
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=3 read=1
+  ->  Index Only Scan using idx_mv_daily_delivered_gmv_pk on mv_daily_delivered_gmv  (cost=0.28..4.86 rows=29 width=11) (actual time=0.004..0.007 rows=30.00 loops=1)
+        Index Cond: ((day >= '2026-06-01'::date) AND (day <= '2026-06-30'::date))
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3 read=1
+Planning:
+  Buffers: shared hit=76 read=8
+Planning Time: 0.536 ms
+Execution Time: 0.053 ms
+=== R20 run 2 ===
+WindowAgg  (cost=0.45..5.29 rows=29 width=43) (actual time=0.015..0.024 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY day)
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_mv_daily_delivered_gmv_pk on mv_daily_delivered_gmv  (cost=0.28..4.86 rows=29 width=11) (actual time=0.003..0.006 rows=30.00 loops=1)
+        Index Cond: ((day >= '2026-06-01'::date) AND (day <= '2026-06-30'::date))
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=84
+Planning Time: 0.177 ms
+Execution Time: 0.050 ms
+=== R20 run 3 ===
+WindowAgg  (cost=0.45..5.29 rows=29 width=43) (actual time=0.014..0.024 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY day)
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_mv_daily_delivered_gmv_pk on mv_daily_delivered_gmv  (cost=0.28..4.86 rows=29 width=11) (actual time=0.003..0.005 rows=30.00 loops=1)
+        Index Cond: ((day >= '2026-06-01'::date) AND (day <= '2026-06-30'::date))
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=84
+Planning Time: 0.167 ms
+Execution Time: 0.048 ms

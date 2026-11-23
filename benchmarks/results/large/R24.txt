@@ -1,0 +1,54 @@
+=== R24 run 1 ===
+Sort  (cost=4.87..4.89 rows=8 width=20) (actual time=0.541..0.541 rows=3.00 loops=1)
+  Sort Key: (sum(quantity)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3 read=4
+  ->  HashAggregate  (cost=4.67..4.75 rows=8 width=20) (actual time=0.533..0.533 rows=3.00 loops=1)
+        Group Key: product_id
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared read=4
+        ->  Index Only Scan using idx_mov_store_type_moved on inventory_movements m  (cost=0.43..4.61 rows=8 width=8) (actual time=0.530..0.530 rows=3.00 loops=1)
+              Index Cond: ((store_id = 43) AND (movement_type = 'RESTOCK'::text) AND (moved_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared read=4
+Planning:
+  Buffers: shared hit=211 read=8
+Planning Time: 1.138 ms
+Execution Time: 0.566 ms
+=== R24 run 2 ===
+Sort  (cost=4.87..4.89 rows=8 width=20) (actual time=0.034..0.034 rows=3.00 loops=1)
+  Sort Key: (sum(quantity)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=7
+  ->  HashAggregate  (cost=4.67..4.75 rows=8 width=20) (actual time=0.027..0.027 rows=3.00 loops=1)
+        Group Key: product_id
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=4
+        ->  Index Only Scan using idx_mov_store_type_moved on inventory_movements m  (cost=0.43..4.61 rows=8 width=8) (actual time=0.024..0.024 rows=3.00 loops=1)
+              Index Cond: ((store_id = 43) AND (movement_type = 'RESTOCK'::text) AND (moved_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=219
+Planning Time: 0.290 ms
+Execution Time: 0.055 ms
+=== R24 run 3 ===
+Sort  (cost=4.87..4.89 rows=8 width=20) (actual time=0.033..0.033 rows=3.00 loops=1)
+  Sort Key: (sum(quantity)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=7
+  ->  HashAggregate  (cost=4.67..4.75 rows=8 width=20) (actual time=0.027..0.027 rows=3.00 loops=1)
+        Group Key: product_id
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=4
+        ->  Index Only Scan using idx_mov_store_type_moved on inventory_movements m  (cost=0.43..4.61 rows=8 width=8) (actual time=0.024..0.024 rows=3.00 loops=1)
+              Index Cond: ((store_id = 43) AND (movement_type = 'RESTOCK'::text) AND (moved_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=219
+Planning Time: 0.275 ms
+Execution Time: 0.060 ms

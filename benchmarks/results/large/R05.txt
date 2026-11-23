@@ -1,0 +1,30 @@
+=== R05 run 1 ===
+Index Only Scan using idx_store_inv_product_store on store_inventory  (cost=0.43..17.77 rows=1 width=13) (actual time=0.225..0.580 rows=3.00 loops=1)
+  Index Cond: ((product_id = ANY ('{1236,324,101,777}'::integer[])) AND (store_id = 43))
+  Heap Fetches: 0
+  Index Searches: 4
+  Buffers: shared hit=9 read=4
+Planning:
+  Buffers: shared hit=190
+Planning Time: 0.305 ms
+Execution Time: 0.592 ms
+=== R05 run 2 ===
+Index Only Scan using idx_store_inv_product_store on store_inventory  (cost=0.43..17.77 rows=1 width=13) (actual time=0.027..0.036 rows=3.00 loops=1)
+  Index Cond: ((product_id = ANY ('{1236,324,101,777}'::integer[])) AND (store_id = 43))
+  Heap Fetches: 0
+  Index Searches: 4
+  Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=190
+Planning Time: 0.291 ms
+Execution Time: 0.048 ms
+=== R05 run 3 ===
+Index Only Scan using idx_store_inv_product_store on store_inventory  (cost=0.43..17.77 rows=1 width=13) (actual time=0.031..0.040 rows=3.00 loops=1)
+  Index Cond: ((product_id = ANY ('{1236,324,101,777}'::integer[])) AND (store_id = 43))
+  Heap Fetches: 0
+  Index Searches: 4
+  Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=190
+Planning Time: 0.288 ms
+Execution Time: 0.052 ms

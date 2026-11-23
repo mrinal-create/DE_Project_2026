@@ -1,0 +1,87 @@
+=== R13 run 1 ===
+Merge Anti Join  (cost=1001.16..51578.18 rows=26537 width=28) (actual time=424.964..892.825 rows=26601.00 loops=1)
+  Merge Cond: (p.product_id = oi.substitute_product_id)
+  Buffers: shared hit=703515 read=286463 written=2136
+  ->  Index Scan using products_pkey on products p  (cost=0.29..1164.29 rows=29250 width=28) (actual time=0.004..3.861 rows=29250.00 loops=1)
+        Filter: is_active
+        Rows Removed by Filter: 750
+        Index Searches: 1
+        Buffers: shared hit=20 read=438
+  ->  Gather Merge  (cost=1000.87..2236778.38 rows=579768 width=4) (actual time=424.956..887.352 rows=13493.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=703495 read=286025 written=2136
+        ->  Nested Loop  (cost=0.85..2168858.74 rows=241570 width=4) (actual time=3.855..599.820 rows=4497.67 loops=3)
+              Buffers: shared hit=703495 read=286025 written=2136
+              ->  Parallel Index Only Scan using idx_order_items_substitute on order_items oi  (cost=0.42..6121.52 rows=4581239 width=12) (actual time=0.178..4.399 rows=81479.67 loops=3)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=10823 read=939 written=6
+              ->  Index Scan using orders_pkey on orders o  (cost=0.43..0.47 rows=1 width=8) (actual time=0.007..0.007 rows=0.06 loops=244439)
+                    Index Cond: (order_id = oi.order_id)
+                    Filter: ((placed_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (placed_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Rows Removed by Filter: 1
+                    Index Searches: 244439
+                    Buffers: shared hit=692672 read=285086 written=2130
+Planning:
+  Buffers: shared hit=665 read=5
+Planning Time: 1.648 ms
+Execution Time: 893.345 ms
+=== R13 run 2 ===
+Merge Anti Join  (cost=1001.16..51578.18 rows=26537 width=28) (actual time=44.724..473.820 rows=26601.00 loops=1)
+  Merge Cond: (p.product_id = oi.substitute_product_id)
+  Buffers: shared hit=709717 read=280268
+  ->  Index Scan using products_pkey on products p  (cost=0.29..1164.29 rows=29250 width=28) (actual time=0.007..3.917 rows=29250.00 loops=1)
+        Filter: is_active
+        Rows Removed by Filter: 750
+        Index Searches: 1
+        Buffers: shared hit=2 read=456
+  ->  Gather Merge  (cost=1000.87..2236778.38 rows=579768 width=4) (actual time=44.712..468.163 rows=13493.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=709715 read=279812
+        ->  Nested Loop  (cost=0.85..2168858.74 rows=241570 width=4) (actual time=0.225..319.136 rows=4497.67 loops=3)
+              Buffers: shared hit=709715 read=279812
+              ->  Parallel Index Only Scan using idx_order_items_substitute on order_items oi  (cost=0.42..6121.52 rows=4581239 width=12) (actual time=0.051..4.350 rows=81479.67 loops=3)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=10830 read=939
+              ->  Index Scan using orders_pkey on orders o  (cost=0.43..0.47 rows=1 width=8) (actual time=0.004..0.004 rows=0.06 loops=244439)
+                    Index Cond: (order_id = oi.order_id)
+                    Filter: ((placed_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (placed_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Rows Removed by Filter: 1
+                    Index Searches: 244439
+                    Buffers: shared hit=698885 read=278873
+Planning:
+  Buffers: shared hit=589 read=81
+Planning Time: 4.749 ms
+Execution Time: 474.386 ms
+=== R13 run 3 ===
+Merge Anti Join  (cost=1001.16..51578.18 rows=26537 width=28) (actual time=40.574..431.743 rows=26601.00 loops=1)
+  Merge Cond: (p.product_id = oi.substitute_product_id)
+  Buffers: shared hit=709541 read=280458
+  ->  Index Scan using products_pkey on products p  (cost=0.29..1164.29 rows=29250 width=28) (actual time=0.006..3.384 rows=29250.00 loops=1)
+        Filter: is_active
+        Rows Removed by Filter: 750
+        Index Searches: 1
+        Buffers: shared hit=2 read=456
+  ->  Gather Merge  (cost=1000.87..2236778.38 rows=579768 width=4) (actual time=40.565..426.734 rows=13493.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=709539 read=280002
+        ->  Nested Loop  (cost=0.85..2168858.74 rows=241570 width=4) (actual time=0.198..291.094 rows=4497.67 loops=3)
+              Buffers: shared hit=709539 read=280002
+              ->  Parallel Index Only Scan using idx_order_items_substitute on order_items oi  (cost=0.42..6121.52 rows=4581239 width=12) (actual time=0.043..4.263 rows=81479.67 loops=3)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=10844 read=939
+              ->  Index Scan using orders_pkey on orders o  (cost=0.43..0.47 rows=1 width=8) (actual time=0.003..0.003 rows=0.06 loops=244439)
+                    Index Cond: (order_id = oi.order_id)
+                    Filter: ((placed_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (placed_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Rows Removed by Filter: 1
+                    Index Searches: 244439
+                    Buffers: shared hit=698695 read=279063
+Planning:
+  Buffers: shared hit=589 read=81
+Planning Time: 1.376 ms
+Execution Time: 432.276 ms
