@@ -1,0 +1,45 @@
+=== R01 run 1 ===
+Limit  (cost=4.46..4.46 rows=1 width=47) (actual time=0.058..0.059 rows=1.00 loops=1)
+  Buffers: shared hit=5
+  ->  Sort  (cost=4.46..4.46 rows=1 width=47) (actual time=0.057..0.058 rows=1.00 loops=1)
+        Sort Key: (round((('6371'::double precision * acos(LEAST('1'::double precision, ((('0.9746441670910125'::double precision * cos(radians((latitude)::double precision))) * cos((radians((longitude)::double precision) - '1.3547245653979987'::double precision))) + ('0.22376046915276712'::double precision * sin(radians((latitude)::double precision))))))))::numeric, 2))
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=5
+        ->  Seq Scan on dark_stores  (cost=0.00..4.45 rows=1 width=47) (actual time=0.039..0.044 rows=1.00 loops=1)
+              Filter: (is_active AND (latitude >= 12.903) AND (latitude <= 12.957) AND (longitude >= 77.592) AND (longitude <= 77.648))
+              Rows Removed by Filter: 119
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.451 ms
+Execution Time: 0.112 ms
+=== R01 run 2 ===
+Limit  (cost=4.46..4.46 rows=1 width=47) (actual time=0.032..0.033 rows=1.00 loops=1)
+  Buffers: shared hit=5
+  ->  Sort  (cost=4.46..4.46 rows=1 width=47) (actual time=0.032..0.032 rows=1.00 loops=1)
+        Sort Key: (round((('6371'::double precision * acos(LEAST('1'::double precision, ((('0.9746441670910125'::double precision * cos(radians((latitude)::double precision))) * cos((radians((longitude)::double precision) - '1.3547245653979987'::double precision))) + ('0.22376046915276712'::double precision * sin(radians((latitude)::double precision))))))))::numeric, 2))
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=5
+        ->  Seq Scan on dark_stores  (cost=0.00..4.45 rows=1 width=47) (actual time=0.022..0.024 rows=1.00 loops=1)
+              Filter: (is_active AND (latitude >= 12.903) AND (latitude <= 12.957) AND (longitude >= 77.592) AND (longitude <= 77.648))
+              Rows Removed by Filter: 119
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.222 ms
+Execution Time: 0.058 ms
+=== R01 run 3 ===
+Limit  (cost=4.46..4.46 rows=1 width=47) (actual time=0.030..0.030 rows=1.00 loops=1)
+  Buffers: shared hit=5
+  ->  Sort  (cost=4.46..4.46 rows=1 width=47) (actual time=0.029..0.030 rows=1.00 loops=1)
+        Sort Key: (round((('6371'::double precision * acos(LEAST('1'::double precision, ((('0.9746441670910125'::double precision * cos(radians((latitude)::double precision))) * cos((radians((longitude)::double precision) - '1.3547245653979987'::double precision))) + ('0.22376046915276712'::double precision * sin(radians((latitude)::double precision))))))))::numeric, 2))
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=5
+        ->  Seq Scan on dark_stores  (cost=0.00..4.45 rows=1 width=47) (actual time=0.020..0.022 rows=1.00 loops=1)
+              Filter: (is_active AND (latitude >= 12.903) AND (latitude <= 12.957) AND (longitude >= 77.592) AND (longitude <= 77.648))
+              Rows Removed by Filter: 119
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.223 ms
+Execution Time: 0.056 ms

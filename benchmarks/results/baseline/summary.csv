@@ -1,31 +1,31 @@
-query_id,type,avg_ms,median_ms,min_ms,max_ms
-R01,READ,0.095,0.097,0.090,0.098
-R02,READ,0.446,0.444,0.442,0.451
-R03,READ,1.235,1.214,1.210,1.280
-R04,READ,0.197,0.194,0.193,0.204
-R05,READ,0.063,0.063,0.062,0.064
-R06,READ,8.001,7.986,7.966,8.052
-R07,READ,10.876,10.901,10.772,10.956
-R08,READ,11.796,11.797,11.721,11.871
-R09,READ,0.531,0.527,0.499,0.567
-R10,READ,9.363,9.392,9.219,9.477
-R11,READ,10.902,10.851,10.814,11.041
-R12,READ,14.668,14.697,14.581,14.725
-R13,READ,34.488,34.390,34.378,34.697
-R14,READ,32.423,32.558,31.957,32.753
-R15,READ,15.151,15.146,15.079,15.229
-R16,READ,57.639,57.537,57.358,58.023
-R17,READ,59.375,58.995,58.964,60.166
-R18,READ,10.614,10.316,10.302,11.224
-R19,READ,3509.217,3508.724,3505.836,3513.091
-R20,READ,17.223,17.221,16.991,17.458
-R21,READ,9.462,9.504,9.303,9.580
-R22,READ,65.379,65.260,63.970,66.906
-R23,READ,0.042,0.041,0.041,0.044
-R24,READ,5.094,5.111,5.051,5.119
-R25,READ,26.449,26.521,26.200,26.626
-W01,WRITE,1.109,1.089,1.051,1.186
-W02,WRITE,19.534,19.419,19.365,19.818
-W03,WRITE,22.797,22.780,22.651,22.961
-W04,WRITE,1.236,1.213,1.048,1.447
-W05,WRITE,57.514,58.020,48.317,66.204
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,0.075,0.058,0.056,0.112,Seq Scan on dark_stores
+R02,READ,0.312,0.248,0.243,0.445,Seq Scan on products | Seq Scan on categories | Index Scan using store_inventory_pkey on store_inventory
+R03,READ,0.424,0.411,0.398,0.463,Seq Scan on products | Index Scan using store_inventory_pkey on store_inventory
+R04,READ,0.109,0.102,0.099,0.125,Seq Scan on dark_stores | Index Scan using store_inventory_pkey on store_inventory
+R05,READ,0.029,0.029,0.027,0.032,Index Scan using store_inventory_pkey on store_inventory
+R06,READ,5.017,4.997,4.961,5.092,Seq Scan on orders
+R07,READ,5.635,5.579,5.401,5.925,Seq Scan on orders
+R08,READ,5.684,5.713,5.621,5.718,Seq Scan on orders
+R09,READ,0.244,0.248,0.237,0.248,Seq Scan on products | Bitmap Heap Scan on store_inventory | Bitmap Index Scan on store_inventory_pkey
+R10,READ,4.657,4.683,4.545,4.742,Seq Scan on inventory_movements | Seq Scan on products | Index Scan using categories_pkey on categories
+R11,READ,5.399,5.211,5.132,5.854,Seq Scan on orders
+R12,READ,8.372,8.371,8.365,8.380,Seq Scan on order_items | Index Only Scan using order_items_pkey on order_items
+R13,READ,19.083,19.123,18.699,19.427,Seq Scan on products | Seq Scan on order_items | Seq Scan on orders
+R14,READ,18.543,18.582,18.070,18.977,Seq Scan on order_items | Seq Scan on orders
+R15,READ,7.876,7.872,7.808,7.948,Seq Scan on orders | Index Scan using dark_stores_pkey on dark_stores
+R16,READ,28.342,28.472,27.885,28.670,Seq Scan on orders
+R17,READ,28.138,28.080,27.841,28.493,Seq Scan on orders | Index Scan using dark_stores_pkey on dark_stores
+R18,READ,4.692,4.702,4.610,4.764,Seq Scan on orders | Index Only Scan using order_items_pkey on order_items | Bitmap Heap Scan on store_inventory | Bitmap Index Scan on store_inventory_pkey | Seq Scan on products
+R19,READ,1754.659,1732.910,1710.160,1820.908,Seq Scan on categories | Seq Scan on products | Seq Scan on order_items | Index Scan using orders_pkey on orders
+R20,READ,8.734,9.074,7.961,9.166,Seq Scan on orders
+R21,READ,4.535,4.538,4.503,4.565,Seq Scan on orders | Seq Scan on riders
+R22,READ,35.902,36.080,35.051,36.576,Seq Scan on orders
+R23,READ,0.024,0.024,0.023,0.025,Index Scan using uq_products_sku on products
+R24,READ,2.607,2.589,2.561,2.670,Seq Scan on inventory_movements
+R25,READ,12.262,12.330,11.886,12.571,Seq Scan on orders | Seq Scan on customers
+W01,WRITE,0.532,0.528,0.518,0.551,(no scan)
+W02,WRITE,9.164,9.105,9.000,9.388,Seq Scan on orders | Index Scan using order_items_pkey on order_items | Index Scan using store_inventory_pkey on store_inventory
+W03,WRITE,11.049,11.242,10.647,11.258,Index Scan using orders_pkey on orders | Index Scan using riders_pkey on riders
+W04,WRITE,1.016,0.680,0.493,1.875,Bitmap Heap Scan on store_inventory | Bitmap Index Scan on store_inventory_pkey
+W05,WRITE,19.954,11.097,10.465,38.301,Seq Scan on inventory_movements

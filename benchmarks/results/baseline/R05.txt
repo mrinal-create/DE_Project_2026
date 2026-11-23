@@ -1,0 +1,27 @@
+=== R05 run 1 ===
+Index Scan using store_inventory_pkey on store_inventory  (cost=0.29..24.74 rows=3 width=13) (actual time=0.010..0.016 rows=3.00 loops=1)
+  Index Cond: ((store_id = 43) AND (product_id = ANY ('{1236,324,101,777}'::integer[])))
+  Index Searches: 4
+  Buffers: shared hit=11
+Planning:
+  Buffers: shared hit=115
+Planning Time: 0.187 ms
+Execution Time: 0.027 ms
+=== R05 run 2 ===
+Index Scan using store_inventory_pkey on store_inventory  (cost=0.29..24.74 rows=3 width=13) (actual time=0.011..0.019 rows=3.00 loops=1)
+  Index Cond: ((store_id = 43) AND (product_id = ANY ('{1236,324,101,777}'::integer[])))
+  Index Searches: 4
+  Buffers: shared hit=11
+Planning:
+  Buffers: shared hit=115
+Planning Time: 0.184 ms
+Execution Time: 0.032 ms
+=== R05 run 3 ===
+Index Scan using store_inventory_pkey on store_inventory  (cost=0.29..24.74 rows=3 width=13) (actual time=0.011..0.018 rows=3.00 loops=1)
+  Index Cond: ((store_id = 43) AND (product_id = ANY ('{1236,324,101,777}'::integer[])))
+  Index Searches: 4
+  Buffers: shared hit=11
+Planning:
+  Buffers: shared hit=115
+Planning Time: 0.186 ms
+Execution Time: 0.029 ms
