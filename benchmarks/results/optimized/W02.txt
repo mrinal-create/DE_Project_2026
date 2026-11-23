@@ -1,0 +1,84 @@
+=== W02 run 1 ===
+Update on store_inventory si  (cost=8.89..65.28 rows=0 width=0) (actual time=0.162..0.162 rows=0.00 loops=1)
+  Buffers: shared hit=119 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=8.16..8.17 rows=1 width=8) (actual time=0.025..0.025 rows=1.00 loops=1)
+          Buffers: shared hit=6
+          InitPlan 1
+            ->  Limit  (cost=0.14..8.16 rows=1 width=8) (actual time=0.024..0.024 rows=1.00 loops=1)
+                  Buffers: shared hit=6
+                  ->  Index Only Scan using idx_orders_open_pack_store_id on orders  (cost=0.14..8.16 rows=1 width=8) (actual time=0.023..0.023 rows=1.00 loops=1)
+                        Index Cond: (store_id = 43)
+                        Heap Fetches: 4
+                        Index Searches: 1
+                        Buffers: shared hit=6
+  ->  Nested Loop  (cost=0.72..57.11 rows=3 width=24) (actual time=0.040..0.050 rows=5.00 loops=1)
+        Buffers: shared hit=25
+        ->  Index Scan using order_items_pkey on order_items oi  (cost=0.42..15.51 rows=5 width=12) (actual time=0.033..0.034 rows=5.00 loops=1)
+              Index Cond: (order_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=10
+        ->  Index Scan using store_inventory_pkey on store_inventory si  (cost=0.29..8.31 rows=1 width=14) (actual time=0.003..0.003 rows=1.00 loops=5)
+              Index Cond: ((store_id = 43) AND (product_id = oi.product_id))
+              Index Searches: 5
+              Buffers: shared hit=15
+Planning:
+  Buffers: shared hit=609
+Planning Time: 0.777 ms
+Execution Time: 0.218 ms
+=== W02 run 2 ===
+Update on store_inventory si  (cost=8.89..65.28 rows=0 width=0) (actual time=0.160..0.160 rows=0.00 loops=1)
+  Buffers: shared hit=118 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=8.16..8.17 rows=1 width=8) (actual time=0.021..0.022 rows=1.00 loops=1)
+          Buffers: shared hit=3
+          InitPlan 1
+            ->  Limit  (cost=0.14..8.16 rows=1 width=8) (actual time=0.021..0.021 rows=1.00 loops=1)
+                  Buffers: shared hit=3
+                  ->  Index Only Scan using idx_orders_open_pack_store_id on orders  (cost=0.14..8.16 rows=1 width=8) (actual time=0.020..0.020 rows=1.00 loops=1)
+                        Index Cond: (store_id = 43)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=3
+  ->  Nested Loop  (cost=0.72..57.11 rows=3 width=24) (actual time=0.039..0.053 rows=5.00 loops=1)
+        Buffers: shared hit=22
+        ->  Index Scan using order_items_pkey on order_items oi  (cost=0.42..15.51 rows=5 width=12) (actual time=0.030..0.030 rows=5.00 loops=1)
+              Index Cond: (order_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=7
+        ->  Index Scan using store_inventory_pkey on store_inventory si  (cost=0.29..8.31 rows=1 width=14) (actual time=0.004..0.004 rows=1.00 loops=5)
+              Index Cond: ((store_id = 43) AND (product_id = oi.product_id))
+              Index Searches: 5
+              Buffers: shared hit=15
+Planning:
+  Buffers: shared hit=609
+Planning Time: 0.814 ms
+Execution Time: 0.209 ms
+=== W02 run 3 ===
+Update on store_inventory si  (cost=8.89..65.28 rows=0 width=0) (actual time=0.155..0.155 rows=0.00 loops=1)
+  Buffers: shared hit=118 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=8.16..8.17 rows=1 width=8) (actual time=0.020..0.020 rows=1.00 loops=1)
+          Buffers: shared hit=3
+          InitPlan 1
+            ->  Limit  (cost=0.14..8.16 rows=1 width=8) (actual time=0.019..0.019 rows=1.00 loops=1)
+                  Buffers: shared hit=3
+                  ->  Index Only Scan using idx_orders_open_pack_store_id on orders  (cost=0.14..8.16 rows=1 width=8) (actual time=0.019..0.019 rows=1.00 loops=1)
+                        Index Cond: (store_id = 43)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=3
+  ->  Nested Loop  (cost=0.72..57.11 rows=3 width=24) (actual time=0.038..0.050 rows=5.00 loops=1)
+        Buffers: shared hit=22
+        ->  Index Scan using order_items_pkey on order_items oi  (cost=0.42..15.51 rows=5 width=12) (actual time=0.028..0.029 rows=5.00 loops=1)
+              Index Cond: (order_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=7
+        ->  Index Scan using store_inventory_pkey on store_inventory si  (cost=0.29..8.31 rows=1 width=14) (actual time=0.004..0.004 rows=1.00 loops=5)
+              Index Cond: ((store_id = 43) AND (product_id = oi.product_id))
+              Index Searches: 5
+              Buffers: shared hit=15
+Planning:
+  Buffers: shared hit=609
+Planning Time: 0.773 ms
+Execution Time: 0.203 ms

@@ -1,0 +1,42 @@
+=== R14 run 1 ===
+Sort  (cost=11.88..12.18 rows=118 width=44) (actual time=0.091..0.094 rows=118.00 loops=1)
+  Sort Key: (round(((100.0 * (short_lines)::numeric) / (lines)::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=6
+  ->  Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate  (cost=0.28..7.82 rows=118 width=44) (actual time=0.050..0.067 rows=118.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.176 ms
+Execution Time: 0.118 ms
+=== R14 run 2 ===
+Sort  (cost=11.88..12.18 rows=118 width=44) (actual time=0.062..0.064 rows=118.00 loops=1)
+  Sort Key: (round(((100.0 * (short_lines)::numeric) / (lines)::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=6
+  ->  Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate  (cost=0.28..7.82 rows=118 width=44) (actual time=0.026..0.042 rows=118.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.153 ms
+Execution Time: 0.082 ms
+=== R14 run 3 ===
+Sort  (cost=11.88..12.18 rows=118 width=44) (actual time=0.063..0.065 rows=118.00 loops=1)
+  Sort Key: (round(((100.0 * (short_lines)::numeric) / (lines)::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=6
+  ->  Index Only Scan using idx_mv_monthly_store_fill_rate_pk on mv_monthly_store_fill_rate  (cost=0.28..7.82 rows=118 width=44) (actual time=0.029..0.043 rows=118.00 loops=1)
+        Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.175 ms
+Execution Time: 0.085 ms

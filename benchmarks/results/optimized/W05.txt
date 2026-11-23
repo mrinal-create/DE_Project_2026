@@ -1,0 +1,48 @@
+=== W05 run 1 ===
+Delete on inventory_movements  (cost=27.12..1527.12 rows=0 width=0) (actual time=10.275..10.275 rows=0.00 loops=1)
+  Buffers: shared hit=60682
+  ->  Bitmap Heap Scan on inventory_movements  (cost=27.12..1527.12 rows=59953 width=6) (actual time=0.021..3.504 rows=60165.00 loops=1)
+        Recheck Cond: (moved_at < '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+        Rows Removed by Index Recheck: 1275
+        Heap Blocks: lossy=512
+        Buffers: shared hit=517
+        ->  Bitmap Index Scan on idx_mov_moved_at_brin  (cost=0.00..12.13 rows=60000 width=0) (actual time=0.013..0.013 rows=5120.00 loops=1)
+              Index Cond: (moved_at < '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+              Index Searches: 1
+              Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.273 ms
+Execution Time: 10.320 ms
+=== W05 run 2 ===
+Delete on inventory_movements  (cost=27.12..1527.12 rows=0 width=0) (actual time=11.624..11.624 rows=0.00 loops=1)
+  Buffers: shared hit=60682
+  ->  Bitmap Heap Scan on inventory_movements  (cost=27.12..1527.12 rows=59953 width=6) (actual time=0.018..3.497 rows=60165.00 loops=1)
+        Recheck Cond: (moved_at < '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+        Rows Removed by Index Recheck: 1275
+        Heap Blocks: lossy=512
+        Buffers: shared hit=517
+        ->  Bitmap Index Scan on idx_mov_moved_at_brin  (cost=0.00..12.13 rows=60000 width=0) (actual time=0.012..0.012 rows=5120.00 loops=1)
+              Index Cond: (moved_at < '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+              Index Searches: 1
+              Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.247 ms
+Execution Time: 11.666 ms
+=== W05 run 3 ===
+Delete on inventory_movements  (cost=27.12..1527.12 rows=0 width=0) (actual time=10.158..10.159 rows=0.00 loops=1)
+  Buffers: shared hit=60682
+  ->  Bitmap Heap Scan on inventory_movements  (cost=27.12..1527.12 rows=59953 width=6) (actual time=0.020..3.463 rows=60165.00 loops=1)
+        Recheck Cond: (moved_at < '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+        Rows Removed by Index Recheck: 1275
+        Heap Blocks: lossy=512
+        Buffers: shared hit=517
+        ->  Bitmap Index Scan on idx_mov_moved_at_brin  (cost=0.00..12.13 rows=60000 width=0) (actual time=0.012..0.012 rows=5120.00 loops=1)
+              Index Cond: (moved_at < '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+              Index Searches: 1
+              Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.255 ms
+Execution Time: 10.202 ms

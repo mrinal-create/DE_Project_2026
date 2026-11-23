@@ -1,0 +1,93 @@
+=== R19 run 1 ===
+Sort  (cost=80.19..80.51 rows=125 width=36) (actual time=0.170..0.173 rows=125.00 loops=1)
+  Sort Key: (COALESCE(s.units_sold, '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=18
+  ->  Hash Right Join  (cost=10.71..75.84 rows=125 width=36) (actual time=0.062..0.154 rows=125.00 loops=1)
+        Hash Cond: (s.product_id = p.product_id)
+        Buffers: shared hit=15
+        ->  Index Only Scan using idx_mv_monthly_product_sales_pk on mv_monthly_product_sales s  (cost=0.29..58.54 rows=1500 width=12) (actual time=0.029..0.082 rows=1500.00 loops=1)
+              Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=10
+        ->  Hash  (cost=8.87..8.87 rows=125 width=28) (actual time=0.030..0.031 rows=125.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 16kB
+              Buffers: shared hit=5
+              ->  Nested Loop  (cost=0.28..8.87 rows=125 width=28) (actual time=0.008..0.025 rows=125.00 loops=1)
+                    Buffers: shared hit=5
+                    ->  Seq Scan on categories c  (cost=0.00..1.15 rows=1 width=2) (actual time=0.003..0.003 rows=1.00 loops=1)
+                          Filter: ((category_name)::text = 'Fruits & Vegetables'::text)
+                          Rows Removed by Filter: 11
+                          Buffers: shared hit=1
+                    ->  Index Only Scan using idx_products_category_cover on products p  (cost=0.28..6.46 rows=125 width=30) (actual time=0.004..0.015 rows=125.00 loops=1)
+                          Index Cond: (category_id = c.category_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=418
+Planning Time: 0.541 ms
+Execution Time: 0.193 ms
+=== R19 run 2 ===
+Sort  (cost=80.19..80.51 rows=125 width=36) (actual time=0.161..0.164 rows=125.00 loops=1)
+  Sort Key: (COALESCE(s.units_sold, '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=18
+  ->  Hash Right Join  (cost=10.71..75.84 rows=125 width=36) (actual time=0.055..0.145 rows=125.00 loops=1)
+        Hash Cond: (s.product_id = p.product_id)
+        Buffers: shared hit=15
+        ->  Index Only Scan using idx_mv_monthly_product_sales_pk on mv_monthly_product_sales s  (cost=0.29..58.54 rows=1500 width=12) (actual time=0.024..0.071 rows=1500.00 loops=1)
+              Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=10
+        ->  Hash  (cost=8.87..8.87 rows=125 width=28) (actual time=0.027..0.027 rows=125.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 16kB
+              Buffers: shared hit=5
+              ->  Nested Loop  (cost=0.28..8.87 rows=125 width=28) (actual time=0.009..0.021 rows=125.00 loops=1)
+                    Buffers: shared hit=5
+                    ->  Seq Scan on categories c  (cost=0.00..1.15 rows=1 width=2) (actual time=0.004..0.004 rows=1.00 loops=1)
+                          Filter: ((category_name)::text = 'Fruits & Vegetables'::text)
+                          Rows Removed by Filter: 11
+                          Buffers: shared hit=1
+                    ->  Index Only Scan using idx_products_category_cover on products p  (cost=0.28..6.46 rows=125 width=30) (actual time=0.004..0.012 rows=125.00 loops=1)
+                          Index Cond: (category_id = c.category_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=418
+Planning Time: 0.537 ms
+Execution Time: 0.187 ms
+=== R19 run 3 ===
+Sort  (cost=80.19..80.51 rows=125 width=36) (actual time=0.158..0.161 rows=125.00 loops=1)
+  Sort Key: (COALESCE(s.units_sold, '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=18
+  ->  Hash Right Join  (cost=10.71..75.84 rows=125 width=36) (actual time=0.052..0.140 rows=125.00 loops=1)
+        Hash Cond: (s.product_id = p.product_id)
+        Buffers: shared hit=15
+        ->  Index Only Scan using idx_mv_monthly_product_sales_pk on mv_monthly_product_sales s  (cost=0.29..58.54 rows=1500 width=12) (actual time=0.022..0.068 rows=1500.00 loops=1)
+              Index Cond: (month = '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=10
+        ->  Hash  (cost=8.87..8.87 rows=125 width=28) (actual time=0.027..0.027 rows=125.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 16kB
+              Buffers: shared hit=5
+              ->  Nested Loop  (cost=0.28..8.87 rows=125 width=28) (actual time=0.009..0.020 rows=125.00 loops=1)
+                    Buffers: shared hit=5
+                    ->  Seq Scan on categories c  (cost=0.00..1.15 rows=1 width=2) (actual time=0.003..0.004 rows=1.00 loops=1)
+                          Filter: ((category_name)::text = 'Fruits & Vegetables'::text)
+                          Rows Removed by Filter: 11
+                          Buffers: shared hit=1
+                    ->  Index Only Scan using idx_products_category_cover on products p  (cost=0.28..6.46 rows=125 width=30) (actual time=0.004..0.010 rows=125.00 loops=1)
+                          Index Cond: (category_id = c.category_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=418
+Planning Time: 0.520 ms
+Execution Time: 0.183 ms

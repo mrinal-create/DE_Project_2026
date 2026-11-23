@@ -1,0 +1,45 @@
+=== R16 run 1 ===
+Sort  (cost=6.16..6.20 rows=18 width=24) (actual time=0.034..0.035 rows=18.00 loops=1)
+  Sort Key: cohort
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  HashAggregate  (cost=5.42..5.78 rows=18 width=24) (actual time=0.026..0.028 rows=18.00 loops=1)
+        Group Key: cohort
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=2
+        ->  Seq Scan on mv_cohort_last_activity  (cost=0.00..3.71 rows=171 width=24) (actual time=0.005..0.010 rows=171.00 loops=1)
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=104
+Planning Time: 0.179 ms
+Execution Time: 0.059 ms
+=== R16 run 2 ===
+Sort  (cost=6.16..6.20 rows=18 width=24) (actual time=0.033..0.034 rows=18.00 loops=1)
+  Sort Key: cohort
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  HashAggregate  (cost=5.42..5.78 rows=18 width=24) (actual time=0.025..0.026 rows=18.00 loops=1)
+        Group Key: cohort
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=2
+        ->  Seq Scan on mv_cohort_last_activity  (cost=0.00..3.71 rows=171 width=24) (actual time=0.005..0.009 rows=171.00 loops=1)
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=104
+Planning Time: 0.159 ms
+Execution Time: 0.058 ms
+=== R16 run 3 ===
+Sort  (cost=6.16..6.20 rows=18 width=24) (actual time=0.034..0.035 rows=18.00 loops=1)
+  Sort Key: cohort
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  HashAggregate  (cost=5.42..5.78 rows=18 width=24) (actual time=0.025..0.027 rows=18.00 loops=1)
+        Group Key: cohort
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=2
+        ->  Seq Scan on mv_cohort_last_activity  (cost=0.00..3.71 rows=171 width=24) (actual time=0.005..0.009 rows=171.00 loops=1)
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=104
+Planning Time: 0.177 ms
+Execution Time: 0.061 ms

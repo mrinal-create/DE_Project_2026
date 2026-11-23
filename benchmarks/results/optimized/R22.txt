@@ -1,0 +1,36 @@
+=== R22 run 1 ===
+Limit  (cost=0.42..1.59 rows=25 width=38) (actual time=0.030..0.032 rows=25.00 loops=1)
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_orders_placed_desc on orders  (cost=0.42..2349.51 rows=50059 width=38) (actual time=0.030..0.031 rows=25.00 loops=1)
+        Index Cond: (ROW(placed_at, order_id) < ROW('2025-07-02 00:00:00+05:30'::timestamp with time zone, 50001))
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=291
+Planning Time: 0.378 ms
+Execution Time: 0.048 ms
+=== R22 run 2 ===
+Limit  (cost=0.42..1.59 rows=25 width=38) (actual time=0.029..0.031 rows=25.00 loops=1)
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_orders_placed_desc on orders  (cost=0.42..2349.51 rows=50059 width=38) (actual time=0.029..0.030 rows=25.00 loops=1)
+        Index Cond: (ROW(placed_at, order_id) < ROW('2025-07-02 00:00:00+05:30'::timestamp with time zone, 50001))
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=291
+Planning Time: 0.409 ms
+Execution Time: 0.049 ms
+=== R22 run 3 ===
+Limit  (cost=0.42..1.59 rows=25 width=38) (actual time=0.028..0.030 rows=25.00 loops=1)
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_orders_placed_desc on orders  (cost=0.42..2349.51 rows=50059 width=38) (actual time=0.027..0.028 rows=25.00 loops=1)
+        Index Cond: (ROW(placed_at, order_id) < ROW('2025-07-02 00:00:00+05:30'::timestamp with time zone, 50001))
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=291
+Planning Time: 0.363 ms
+Execution Time: 0.046 ms

@@ -1,0 +1,93 @@
+=== R02 run 1 ===
+Sort  (cost=99.45..99.66 rows=82 width=37) (actual time=0.347..0.349 rows=75.00 loops=1)
+  Sort Key: si.selling_price
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=1850
+  ->  Hash Join  (cost=10.85..96.85 rows=82 width=37) (actual time=0.078..0.327 rows=75.00 loops=1)
+        Hash Cond: (si.product_id = p.product_id)
+        Buffers: shared hit=1847
+        ->  Index Only Scan using idx_store_inv_instock_store_price on store_inventory si  (cost=0.42..81.91 rows=985 width=13) (actual time=0.013..0.257 rows=975.00 loops=1)
+              Index Cond: (store_id = 43)
+              Heap Fetches: 2028
+              Index Searches: 1
+              Buffers: shared hit=1843
+        ->  Hash  (cost=8.87..8.87 rows=125 width=28) (actual time=0.030..0.031 rows=125.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 15kB
+              Buffers: shared hit=4
+              ->  Nested Loop  (cost=0.28..8.87 rows=125 width=28) (actual time=0.013..0.022 rows=125.00 loops=1)
+                    Buffers: shared hit=4
+                    ->  Seq Scan on categories c  (cost=0.00..1.15 rows=1 width=2) (actual time=0.004..0.005 rows=1.00 loops=1)
+                          Filter: ((category_name)::text = 'Dairy'::text)
+                          Rows Removed by Filter: 11
+                          Buffers: shared hit=1
+                    ->  Index Only Scan using idx_products_category_cover on products p  (cost=0.28..6.46 rows=125 width=30) (actual time=0.007..0.010 rows=125.00 loops=1)
+                          Index Cond: (category_id = c.category_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=498
+Planning Time: 1.155 ms
+Execution Time: 0.383 ms
+=== R02 run 2 ===
+Sort  (cost=99.45..99.66 rows=82 width=37) (actual time=0.238..0.241 rows=75.00 loops=1)
+  Sort Key: si.selling_price
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=752
+  ->  Hash Join  (cost=10.85..96.85 rows=82 width=37) (actual time=0.046..0.219 rows=75.00 loops=1)
+        Hash Cond: (si.product_id = p.product_id)
+        Buffers: shared hit=749
+        ->  Index Only Scan using idx_store_inv_instock_store_price on store_inventory si  (cost=0.42..81.91 rows=985 width=13) (actual time=0.007..0.149 rows=975.00 loops=1)
+              Index Cond: (store_id = 43)
+              Heap Fetches: 975
+              Index Searches: 1
+              Buffers: shared hit=745
+        ->  Hash  (cost=8.87..8.87 rows=125 width=28) (actual time=0.028..0.028 rows=125.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 15kB
+              Buffers: shared hit=4
+              ->  Nested Loop  (cost=0.28..8.87 rows=125 width=28) (actual time=0.011..0.020 rows=125.00 loops=1)
+                    Buffers: shared hit=4
+                    ->  Seq Scan on categories c  (cost=0.00..1.15 rows=1 width=2) (actual time=0.003..0.004 rows=1.00 loops=1)
+                          Filter: ((category_name)::text = 'Dairy'::text)
+                          Rows Removed by Filter: 11
+                          Buffers: shared hit=1
+                    ->  Index Only Scan using idx_products_category_cover on products p  (cost=0.28..6.46 rows=125 width=30) (actual time=0.007..0.010 rows=125.00 loops=1)
+                          Index Cond: (category_id = c.category_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=498
+Planning Time: 0.736 ms
+Execution Time: 0.270 ms
+=== R02 run 3 ===
+Sort  (cost=99.45..99.66 rows=82 width=37) (actual time=0.216..0.219 rows=75.00 loops=1)
+  Sort Key: si.selling_price
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=752
+  ->  Hash Join  (cost=10.85..96.85 rows=82 width=37) (actual time=0.048..0.199 rows=75.00 loops=1)
+        Hash Cond: (si.product_id = p.product_id)
+        Buffers: shared hit=749
+        ->  Index Only Scan using idx_store_inv_instock_store_price on store_inventory si  (cost=0.42..81.91 rows=985 width=13) (actual time=0.008..0.133 rows=975.00 loops=1)
+              Index Cond: (store_id = 43)
+              Heap Fetches: 975
+              Index Searches: 1
+              Buffers: shared hit=745
+        ->  Hash  (cost=8.87..8.87 rows=125 width=28) (actual time=0.029..0.029 rows=125.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 15kB
+              Buffers: shared hit=4
+              ->  Nested Loop  (cost=0.28..8.87 rows=125 width=28) (actual time=0.011..0.020 rows=125.00 loops=1)
+                    Buffers: shared hit=4
+                    ->  Seq Scan on categories c  (cost=0.00..1.15 rows=1 width=2) (actual time=0.003..0.004 rows=1.00 loops=1)
+                          Filter: ((category_name)::text = 'Dairy'::text)
+                          Rows Removed by Filter: 11
+                          Buffers: shared hit=1
+                    ->  Index Only Scan using idx_products_category_cover on products p  (cost=0.28..6.46 rows=125 width=30) (actual time=0.007..0.010 rows=125.00 loops=1)
+                          Index Cond: (category_id = c.category_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=498
+Planning Time: 0.760 ms
+Execution Time: 0.248 ms
